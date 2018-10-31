@@ -9,8 +9,9 @@ import './index.css';
 import store from './store/storeConfigure';
 import firebaseConfig from './config/firebaseConfig.json';
 
-// TODO: Create a file called 'sw.js' in the public folder
-// TODO: Import registerServiceWorker and call it
+import registerServiceWorker from './registerServiceWorker';
+
+registerServiceWorker();
 
 firebase.initializeApp(firebaseConfig);
 
