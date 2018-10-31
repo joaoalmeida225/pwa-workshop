@@ -27,11 +27,27 @@ const cacheFirst = async event => {
     }
 };
 
-// TODO: Create a fetch first approach
+const fetchFirst = async event => {
+    const { request } = event;
+    const cache = await caches.open(CACHE_NAME);
+
+    try {
+        const response = await fetch(request.clone());
+        await cache.put(event.request.url, response.clone());
+        return response;
+    } catch (error) {
+        const cachedResponse = await cache.match(request.url);
+        if (cachedResponse) {
+            return cachedResponse;
+        }
+        return error;
+    }
+};
 
 self.addEventListener('fetch', event => {
     if (event.request.method === GET) {
-        event.respondWith(cacheFirst(event));
+        // event.respondWith(cacheFirst(event));
+        event.respondWith(fetchFirst(event));
     }
 });
 

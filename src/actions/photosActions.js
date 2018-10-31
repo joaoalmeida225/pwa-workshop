@@ -2,7 +2,7 @@ import firebase from 'firebase';
 import { FETCH_PHOTOS, UPLOAD_PHOTO, DELETE_PHOTO } from './index';
 
 const BASE_URL = 'https://firestore.googleapis.com/v1beta1/';
-const PROJECT_URL = 'projects/pwa-blip-ws-00/databases/(default)/documents/photos/';
+const PROJECT_URL = 'projects/pwa-ppb-ws-10/databases/(default)/documents/photos/';
 
 const getPhotosData = () =>
     new Promise(async (resolve, reject) => {
